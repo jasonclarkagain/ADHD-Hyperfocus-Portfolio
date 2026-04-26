@@ -3,13 +3,19 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Portfolio API specification
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: projects
+    description: Portfolio projects
+  - name: skills
+    description: Technical skills
+  - name: contact
+    description: Contact form
 paths:
   /healthz:
     get:
@@ -24,6 +30,129 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /projects:
+    get:
+      operationId: getProjects
+      tags: [projects]
+      summary: Get all projects
+      description: Returns all portfolio projects
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [published, in-progress, archived, all]
+          required: false
+        - in: query
+          name: tag
+          schema:
+            type: string
+          required: false
+      responses:
+        "200":
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+
+  /projects/{id}:
+    get:
+      operationId: getProject
+      tags: [projects]
+      summary: Get a single project
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "404":
+          description: Project not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /projects/stats:
+    get:
+      operationId: getProjectStats
+      tags: [projects]
+      summary: Get project statistics
+      description: Aggregated stats — total projects, languages used, published count, etc.
+      responses:
+        "200":
+          description: Stats summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectStats"
+
+  /projects/featured:
+    get:
+      operationId: getFeaturedProjects
+      tags: [projects]
+      summary: Get featured/pinned projects
+      responses:
+        "200":
+          description: Featured projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+
+  /skills:
+    get:
+      operationId: getSkills
+      tags: [skills]
+      summary: Get all skills
+      responses:
+        "200":
+          description: Skills grouped by category
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SkillCategory"
+
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactRequest"
+      responses:
+        "200":
+          description: Message received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +163,172 @@ components:
       required:
         - status
 
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        longDescription:
+          type: ["string", "null"]
+        status:
+          type: string
+          enum: [published, in-progress, archived]
+        tags:
+          type: array
+          items:
+            type: string
+        techStack:
+          type: array
+          items:
+            type: string
+        replitUrl:
+          type: ["string", "null"]
+        githubUrl:
+          type: ["string", "null"]
+        liveUrl:
+          type: ["string", "null"]
+        imageUrl:
+          type: ["string", "null"]
+        featured:
+          type: boolean
+        sortOrder:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - title
+        - slug
+        - description
+        - status
+        - tags
+        - techStack
+        - featured
+        - sortOrder
+        - createdAt
+        - updatedAt
+
+    ProjectStats:
+      type: object
+      properties:
+        total:
+          type: integer
+        published:
+          type: integer
+        inProgress:
+          type: integer
+        archived:
+          type: integer
+        topLanguages:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              count:
+                type: integer
+            required:
+              - name
+              - count
+        topTags:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              count:
+                type: integer
+            required:
+              - name
+              - count
+      required:
+        - total
+        - published
+        - inProgress
+        - archived
+        - topLanguages
+        - topTags
+
+    SkillCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        category:
+          type: string
+        sortOrder:
+          type: integer
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+      required:
+        - id
+        - category
+        - sortOrder
+        - skills
+
+    Skill:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        level:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+        yearsOfExperience:
+          type: ["integer", "null"]
+        icon:
+          type: ["string", "null"]
+      required:
+        - id
+        - name
+        - level
+
+    ContactRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        subject:
+          type: string
+        message:
+          type: string
+      required:
+        - name
+        - email
+        - subject
+        - message
+
+    ContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+        - success
+        - message
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
