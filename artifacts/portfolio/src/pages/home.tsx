@@ -103,6 +103,7 @@ function ProjectCard({
     techStack: string[];
     replitUrl?: string | null;
     liveUrl?: string | null;
+    githubUrl?: string | null;
     featured: boolean;
   };
   featured?: boolean;
@@ -180,6 +181,7 @@ function ProjectModal({
     techStack: string[];
     replitUrl?: string | null;
     liveUrl?: string | null;
+    githubUrl?: string | null;
     featured: boolean;
   };
   onClose: () => void;
@@ -259,15 +261,15 @@ function ProjectModal({
           </div>
         )}
 
-        <div className="flex gap-4 mt-6">
-          {project.replitUrl && (
+        <div className="flex flex-wrap gap-3 mt-6">
+          {project.githubUrl && (
             <a
-              href={project.replitUrl}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-mono border border-primary text-primary px-4 py-2 hover:bg-primary hover:text-primary-foreground transition-colors"
             >
-              view on replit →
+              view on github →
             </a>
           )}
           {project.liveUrl && (
@@ -278,6 +280,16 @@ function ProjectModal({
               className="text-sm font-mono border border-border text-foreground px-4 py-2 hover:border-primary transition-colors"
             >
               live demo →
+            </a>
+          )}
+          {project.replitUrl && (
+            <a
+              href={project.replitUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-mono border border-secondary/40 text-secondary px-4 py-2 hover:bg-secondary/10 transition-colors"
+            >
+              view on replit →
             </a>
           )}
         </div>
@@ -364,6 +376,14 @@ export default function Home() {
                 {id === "contact" ? "contact()" : `/${id}`}
               </a>
             ))}
+            <a
+              href="https://github.com/jasonclarkagain"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors border border-border/40 px-2 py-0.5 hover:border-primary/40"
+            >
+              gh
+            </a>
           </div>
         </div>
       </nav>
@@ -415,8 +435,8 @@ export default function Home() {
           className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl font-mono leading-relaxed"
         >
           Building things, breaking things, rebuilding them better — occasionally shipping something
-          that works on the first try. Currently: shipping projects in Rust, Go, Zig, and TypeScript.
-          Simultaneously.
+          that works on the first try. Currently: 61 repos across AI agents, security tools, and
+          systems that definitely don't have bugs. Simultaneously.
         </motion.p>
 
         <motion.div
@@ -544,7 +564,7 @@ export default function Home() {
                 <span className="text-primary">$</span> cat interests.txt
               </div>
               <div className="text-foreground pl-2">
-                {["Rust", "Systems Design", "Distributed Systems", "Compilers", "Zig", "WebAssembly"].map(
+                {["AI Agents & Orchestration", "Security & Cryptography", "Distributed Systems", "TypeScript / Python / Rust", "Next.js / React", "System Automation"].map(
                   (i) => (
                     <div key={i} className="text-xs">
                       → {i}
@@ -913,7 +933,15 @@ export default function Home() {
           <div>
             // built with TypeScript, React, Vite, Express, PostgreSQL — and too much coffee
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
+            <a
+              href="https://github.com/jasonclarkagain"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              github.com/jasonclarkagain
+            </a>
             <span>// no light mode. never.</span>
             <span className="text-primary">2026</span>
           </div>
