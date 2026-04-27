@@ -121,6 +121,18 @@ function ProjectCard({
     archived: "// archived",
   };
 
+  const platformBadges: Record<string, { label: string; className: string }> = {
+    vercel: { label: "▲ Vercel", className: "text-white border-white/20 bg-white/5" },
+    supabase: { label: "⚡ Supabase", className: "text-emerald-400 border-emerald-400/30 bg-emerald-400/5" },
+    gemini: { label: "✦ Gemini", className: "text-blue-400 border-blue-400/30 bg-blue-400/5" },
+    openai: { label: "◈ OpenAI", className: "text-green-400 border-green-400/30 bg-green-400/5" },
+    deepseek: { label: "◉ DeepSeek", className: "text-violet-400 border-violet-400/30 bg-violet-400/5" },
+  };
+
+  const activePlatforms = project.tags
+    .filter((t) => platformBadges[t])
+    .slice(0, 2);
+
   return (
     <motion.div
       whileHover={{ y: -4, borderColor: "hsl(var(--primary) / 0.5)" }}
@@ -132,6 +144,18 @@ function ProjectCard({
       {featured && (
         <div className="absolute top-0 right-0 text-xs font-mono bg-primary text-primary-foreground px-2 py-0.5">
           FEATURED
+        </div>
+      )}
+      {project.liveUrl && !featured && (
+        <div className="absolute top-0 right-0 flex items-center gap-1 text-xs font-mono bg-emerald-500/10 border-b border-l border-emerald-500/30 text-emerald-400 px-2 py-0.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
+        </div>
+      )}
+      {featured && project.liveUrl && (
+        <div className="absolute top-6 right-0 flex items-center gap-1 text-xs font-mono bg-emerald-500/10 border-b border-l border-emerald-500/30 text-emerald-400 px-2 py-0.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
         </div>
       )}
       <div className="flex items-start justify-between gap-4 mb-3">
@@ -146,7 +170,7 @@ function ProjectCard({
       </div>
       <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
       <div className="flex flex-wrap gap-1.5">
-        {project.techStack.slice(0, 5).map((t) => (
+        {project.techStack.slice(0, 4).map((t) => (
           <span
             key={t}
             className="text-xs font-mono bg-muted border border-border px-2 py-0.5 text-muted-foreground"
@@ -154,14 +178,30 @@ function ProjectCard({
             {t}
           </span>
         ))}
-        {project.techStack.length > 5 && (
+        {project.techStack.length > 4 && (
           <span className="text-xs font-mono text-muted-foreground px-1">
-            +{project.techStack.length - 5}
+            +{project.techStack.length - 4}
           </span>
         )}
       </div>
-      <div className="mt-4 text-xs font-mono text-muted-foreground/60 group-hover:text-primary/60 transition-colors">
-        click to expand →
+      {activePlatforms.length > 0 && (
+        <div className="flex gap-1.5 mt-2">
+          {activePlatforms.map((p) => (
+            <span key={p} className={`text-xs font-mono border px-1.5 py-0.5 ${platformBadges[p].className}`}>
+              {platformBadges[p].label}
+            </span>
+          ))}
+        </div>
+      )}
+      <div className="mt-4 flex items-center justify-between">
+        <span className="text-xs font-mono text-muted-foreground/60 group-hover:text-primary/60 transition-colors">
+          click to expand →
+        </span>
+        {project.liveUrl && (
+          <span className="text-xs font-mono text-emerald-400/60 group-hover:text-emerald-400 transition-colors">
+            live demo ↗
+          </span>
+        )}
       </div>
     </motion.div>
   );
@@ -261,7 +301,44 @@ function ProjectModal({
           </div>
         )}
 
+        {/* Platform badges in modal */}
+        {(() => {
+          const modalPlatformBadges: Record<string, { label: string; className: string }> = {
+            vercel: { label: "▲ Vercel", className: "text-white border-white/20 bg-white/5" },
+            supabase: { label: "⚡ Supabase", className: "text-emerald-400 border-emerald-400/30 bg-emerald-400/5" },
+            gemini: { label: "✦ Gemini", className: "text-blue-400 border-blue-400/30 bg-blue-400/5" },
+            openai: { label: "◈ OpenAI", className: "text-green-400 border-green-400/30 bg-green-400/5" },
+            deepseek: { label: "◉ DeepSeek", className: "text-violet-400 border-violet-400/30 bg-violet-400/5" },
+            ollama: { label: "◎ Ollama", className: "text-orange-400 border-orange-400/30 bg-orange-400/5" },
+          };
+          const platforms = project.tags.filter((t) => modalPlatformBadges[t]);
+          if (platforms.length === 0) return null;
+          return (
+            <div className="mb-6">
+              <div className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">platforms</div>
+              <div className="flex flex-wrap gap-2">
+                {platforms.map((p) => (
+                  <span key={p} className={`text-xs font-mono border px-2 py-0.5 ${modalPlatformBadges[p].className}`}>
+                    {modalPlatformBadges[p].label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
         <div className="flex flex-wrap gap-3 mt-6">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-mono border border-emerald-500/40 text-emerald-400 px-4 py-2 hover:bg-emerald-500/10 transition-colors flex items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              live demo ↗
+            </a>
+          )}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
@@ -270,16 +347,6 @@ function ProjectModal({
               className="text-sm font-mono border border-primary text-primary px-4 py-2 hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               view on github →
-            </a>
-          )}
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-mono border border-border text-foreground px-4 py-2 hover:border-primary transition-colors"
-            >
-              live demo →
             </a>
           )}
           {project.replitUrl && (
