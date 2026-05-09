@@ -104,6 +104,7 @@ function ProjectCard({
     replitUrl?: string | null;
     liveUrl?: string | null;
     githubUrl?: string | null;
+    imageUrl?: string | null;
     featured: boolean;
   };
   featured?: boolean;
@@ -136,28 +137,46 @@ function ProjectCard({
   return (
     <motion.div
       whileHover={{ y: -4, borderColor: "hsl(var(--primary) / 0.5)" }}
-      className={`group relative border bg-card p-6 cursor-pointer transition-colors ${
+      className={`group relative border bg-card cursor-pointer transition-colors overflow-hidden ${
         featured ? "border-primary/30" : "border-border"
       }`}
       onClick={onClick}
     >
-      {featured && (
-        <div className="absolute top-0 right-0 text-xs font-mono bg-primary text-primary-foreground px-2 py-0.5">
-          FEATURED
+      {/* Project image */}
+      <div className="relative w-full aspect-video bg-muted overflow-hidden">
+        {project.imageUrl ? (
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/5 flex items-center justify-center">
+            <span className="font-mono text-xs text-muted-foreground/40 uppercase tracking-widest">
+              {project.title.slice(0, 2)}
+            </span>
+          </div>
+        )}
+        {/* Overlay badges on image */}
+        <div className="absolute top-0 left-0 right-0 flex justify-between items-start p-2">
+          {featured && (
+            <div className="text-xs font-mono bg-primary text-primary-foreground px-2 py-0.5">
+              FEATURED
+            </div>
+          )}
+          {!featured && <div />}
+          {project.liveUrl && (
+            <div className="flex items-center gap-1 text-xs font-mono bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 px-2 py-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              LIVE
+            </div>
+          )}
         </div>
-      )}
-      {project.liveUrl && !featured && (
-        <div className="absolute top-0 right-0 flex items-center gap-1 text-xs font-mono bg-emerald-500/10 border-b border-l border-emerald-500/30 text-emerald-400 px-2 py-0.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          LIVE
-        </div>
-      )}
-      {featured && project.liveUrl && (
-        <div className="absolute top-6 right-0 flex items-center gap-1 text-xs font-mono bg-emerald-500/10 border-b border-l border-emerald-500/30 text-emerald-400 px-2 py-0.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          LIVE
-        </div>
-      )}
+        {/* Image gradient overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-card to-transparent" />
+      </div>
+
+      <div className="p-5">
       <div className="flex items-start justify-between gap-4 mb-3">
         <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors font-sans">
           {project.title}
@@ -203,6 +222,7 @@ function ProjectCard({
           </span>
         )}
       </div>
+      </div>
     </motion.div>
   );
 }
@@ -222,6 +242,7 @@ function ProjectModal({
     replitUrl?: string | null;
     liveUrl?: string | null;
     githubUrl?: string | null;
+    imageUrl?: string | null;
     featured: boolean;
   };
   onClose: () => void;
@@ -244,9 +265,27 @@ function ProjectModal({
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
-        className="bg-card border border-primary/20 p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+        className="bg-card border border-primary/20 max-w-2xl w-full max-h-[85vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Modal image header */}
+        {project.imageUrl && (
+          <div className="relative w-full aspect-video overflow-hidden">
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="w-full h-full object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+            {project.liveUrl && (
+              <div className="absolute top-3 right-3 flex items-center gap-1 text-xs font-mono bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 px-2 py-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                LIVE
+              </div>
+            )}
+          </div>
+        )}
+        <div className="p-8">
         <div className="flex items-start justify-between mb-6">
           <div>
             <div className="text-xs font-mono text-primary mb-2">
@@ -359,6 +398,7 @@ function ProjectModal({
               view on replit →
             </a>
           )}
+        </div>
         </div>
       </motion.div>
     </motion.div>

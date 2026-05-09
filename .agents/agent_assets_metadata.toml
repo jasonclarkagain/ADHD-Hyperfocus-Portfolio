@@ -1,0 +1,284 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "NsBt2pRdbrCyUAasXD0qB"
+uri = "file://artifacts/portfolio/public/images/projects/workflow-builder.png"
+type = "image"
+title = "workflow builder UI"
+
+[[generated]]
+id = "OcuuTPYOBh5zGHAxi9nUl"
+uri = "file://artifacts/portfolio/public/images/projects/morphic-generative-ui-answer-engine.png"
+type = "image"
+title = "morphic AI answer engine"
+
+[[generated]]
+id = "Ne3-d_6aLpqY6D_p4gHVA"
+uri = "file://artifacts/portfolio/public/images/projects/ai-chatbot.png"
+type = "image"
+title = "AI chatbot interface"
+
+[[generated]]
+id = "hmXpBQQjTH0vZVtAUSTlg"
+uri = "file://artifacts/portfolio/public/images/projects/parallelai.png"
+type = "image"
+title = "parallel AI comparison"
+
+[[generated]]
+id = "pb-AYmsNIe6Hg8o93pJNe"
+uri = "file://artifacts/portfolio/public/images/projects/x402-ai-starter.png"
+type = "image"
+title = "x402 blockchain AI payments"
+
+[[generated]]
+id = "ljo56UxcLQV7FaIsXANcb"
+uri = "file://artifacts/portfolio/public/images/projects/secure-share-hub.png"
+type = "image"
+title = "secure encrypted file share"
+
+[[generated]]
+id = "LNfs1jf1VfuHKTbWlIga8"
+uri = "file://artifacts/portfolio/public/images/projects/spacelink.png"
+type = "image"
+title = "satellite network visualization"
+
+[[generated]]
+id = "nlv66MJNULvlb6mLSOOVU"
+uri = "file://artifacts/portfolio/public/images/projects/llm-swarm.png"
+type = "image"
+title = "LLM agent swarm network"
+
+[[generated]]
+id = "EAuZT9fju5vZsTbq_4US5"
+uri = "file://artifacts/portfolio/public/images/projects/axiom-emitter.png"
+type = "image"
+title = "Rust event emitter code"
+
+[[generated]]
+id = "YtPWDffKcFNdrcJVbzS1S"
+uri = "file://artifacts/portfolio/public/images/projects/onion-browser.png"
+type = "image"
+title = "onion browser privacy UI"
+
+[[generated]]
+id = "2sxrT1O1JL3RE5xTBJc0g"
+uri = "file://artifacts/portfolio/public/images/projects/notion-like-ai-editor.png"
+type = "image"
+title = "notion AI editor interface"
+
+[[generated]]
+id = "f3K5E1ljL7qNsqEIgegYp"
+uri = "file://artifacts/portfolio/public/images/projects/ai-story-weaver.png"
+type = "image"
+title = "AI story weaver interface"
+
+[[generated]]
+id = "GjDENq6rmw6cV_DorFTRx"
+uri = "file://artifacts/portfolio/public/images/projects/re-ai-assistant.png"
+type = "image"
+title = "ReAct AI reasoning assistant"
+
+[[generated]]
+id = "HEjubCRY7tnsmFc2bQHLH"
+uri = "file://artifacts/portfolio/public/images/projects/chat-sdk-liveblocks-bot.png"
+type = "image"
+title = "Liveblocks collaborative chat bot"
+
+[[generated]]
+id = "zeR2Dy7KORDGREOF4XLp6"
+uri = "file://artifacts/portfolio/public/images/projects/envshare.png"
+type = "image"
+title = "secure env var sharing"
+
+[[generated]]
+id = "9JGnNwSpagye8NyRdOBH4"
+uri = "file://artifacts/portfolio/public/images/projects/envshare-extended.png"
+type = "image"
+title = "extended envshare dashboard"
+
+[[generated]]
+id = "WlpiQVk78sTqGSo5VtvDB"
+uri = "file://artifacts/portfolio/public/images/projects/mcp-with-next-js.png"
+type = "image"
+title = "MCP Next.js integration"
+
+[[generated]]
+id = "DkYotwCS1B2PQJT1Gaa5p"
+uri = "file://artifacts/portfolio/public/images/projects/headless-forms.png"
+type = "image"
+title = "headless form builder"
+
+[[generated]]
+id = "4aiyFIh7hkS0nXKn3MsGE"
+uri = "file://artifacts/portfolio/public/images/projects/oninst-toolshed.png"
+type = "image"
+title = "developer toolshed collection"
+
+[[generated]]
+id = "rJVRJA1ezlnFvPKgxbvIt"
+uri = "file://artifacts/portfolio/public/images/projects/growthbook-feature-flags.png"
+type = "image"
+title = "GrowthBook feature flags"
+
+[[generated]]
+id = "0FBrXXl0SDqYLwXs5imd2"
+uri = "file://artifacts/portfolio/public/images/projects/launchdarkly-feature-flags.png"
+type = "image"
+title = "LaunchDarkly feature flags"
+
+[[generated]]
+id = "3uqO5-C25U6iv0TlNnokb"
+uri = "file://artifacts/portfolio/public/images/projects/pgp-crypter.png"
+type = "image"
+title = "PGP encryption tool"
+
+[[generated]]
+id = "wiLqPLiQm2RpFmZhiA7fW"
+uri = "file://artifacts/portfolio/public/images/projects/cryptovault.png"
+type = "image"
+title = "crypto vault dashboard"
+
+[[generated]]
+id = "JUI5rYY6ZR83EUuPRljr9"
+uri = "file://artifacts/portfolio/public/images/projects/securecrypt.png"
+type = "image"
+title = "SecureCrypt library demo"
+
+[[generated]]
+id = "I3run-58DfOmwpyCCQGHE"
+uri = "file://artifacts/portfolio/public/images/projects/starstealer-analysis.png"
+type = "image"
+title = "GitHub stars analysis tool"
+
+[[generated]]
+id = "_in6uXnpJX-S_7B_iZtMW"
+uri = "file://artifacts/portfolio/public/images/projects/forensic-sentinel.png"
+type = "image"
+title = "forensic analysis sentinel"
+
+[[generated]]
+id = "PXGwwR5-fsM_TLXjdEdQa"
+uri = "file://artifacts/portfolio/public/images/projects/project-sentinel.png"
+type = "image"
+title = "security sentinel dashboard"
+
+[[generated]]
+id = "mdBOU7ki0cNz8UVoqYf3g"
+uri = "file://artifacts/portfolio/public/images/projects/expensesmart.png"
+type = "image"
+title = "expense tracking app"
+
+[[generated]]
+id = "IthmEtQp40c768Gq4X5kB"
+uri = "file://artifacts/portfolio/public/images/projects/omni-receipt.png"
+type = "image"
+title = "AI receipt scanner"
+
+[[generated]]
+id = "1EsBG9uMPrqPtXy1k_Yn3"
+uri = "file://artifacts/portfolio/public/images/projects/chat.png"
+type = "image"
+title = "real-time chat app"
+
+[[generated]]
+id = "0nB5YvebOgc5sy7_XfAwO"
+uri = "file://artifacts/portfolio/public/images/projects/multi-tenant-ai-todo-nile.png"
+type = "image"
+title = "multi-tenant AI todo Nile"
+
+[[generated]]
+id = "iHLSsXOnxnjBJ1PLJXYJk"
+uri = "file://artifacts/portfolio/public/images/projects/auth0-saas-starter.png"
+type = "image"
+title = "Auth0 SaaS starter"
+
+[[generated]]
+id = "H2g4JMyxMhquBLcMdwP8U"
+uri = "file://artifacts/portfolio/public/images/projects/microfrontends-multi-zones.png"
+type = "image"
+title = "microfrontends architecture"
+
+[[generated]]
+id = "ziJ4be4xRA_cRjeK4W9rp"
+uri = "file://artifacts/portfolio/public/images/projects/xata-search.png"
+type = "image"
+title = "Xata full-text search"
+
+[[generated]]
+id = "rSyuLuUnLPXbMFiFJbn-C"
+uri = "file://artifacts/portfolio/public/images/projects/anycable-real-time.png"
+type = "image"
+title = "AnyCable real-time demo"
+
+[[generated]]
+id = "4CYjGucByfeVRUHUE0Zja"
+uri = "file://artifacts/portfolio/public/images/projects/omni-propagation-system.png"
+type = "image"
+title = "signal propagation system"
+
+[[generated]]
+id = "dPtgS9F5hWhmx2l8-cwaB"
+uri = "file://artifacts/portfolio/public/images/projects/mothership.png"
+type = "image"
+title = "mothership command control"
+
+[[generated]]
+id = "R9_Djls9CjYUYoUdH0zho"
+uri = "file://artifacts/portfolio/public/images/projects/omnipropagation.png"
+type = "image"
+title = "omni propagation network"
+
+[[generated]]
+id = "sEfoYYBPTrysQgan6-b2V"
+uri = "file://artifacts/portfolio/public/images/projects/omnicommander-elite.png"
+type = "image"
+title = "elite command dashboard"
+
+[[generated]]
+id = "uR0dQ8KIoq_EFLU2C_HxS"
+uri = "file://artifacts/portfolio/public/images/projects/sovereign-core.png"
+type = "image"
+title = "sovereign core infrastructure"
+
+[[generated]]
+id = "3NuovlHi2AsCenKzfDfNP"
+uri = "file://artifacts/portfolio/public/images/projects/sovereign-swarm.png"
+type = "image"
+title = "sovereign AI swarm"
+
+[[generated]]
+id = "XF5An4ZH7l8IFQeGsNA7Z"
+uri = "file://artifacts/portfolio/public/images/projects/rumble-video-generator.png"
+type = "image"
+title = "AI video generator"
+
+[[generated]]
+id = "Qwtxfmc3aL1tubdz5kiW6"
+uri = "file://artifacts/portfolio/public/images/projects/youtubego.png"
+type = "image"
+title = "YouTube alternative platform"
+
+[[generated]]
+id = "kzIDAyS1BV2GnYvKgso5C"
+uri = "file://artifacts/portfolio/public/images/projects/teton-peaks-view.png"
+type = "image"
+title = "Teton peaks photo gallery"
+
+[[generated]]
+id = "xBLV_BPhuTAQ2hP9BMQzE"
+uri = "file://artifacts/portfolio/public/images/projects/image-gallery-starter.png"
+type = "image"
+title = "image gallery template"
+
+[[generated]]
+id = "LrxgjsWXcb0-08hAKqiIn"
+uri = "file://artifacts/portfolio/public/images/projects/neversus.png"
+type = "image"
+title = "gaming versus platform"
+
+[[generated]]
+id = "v2HNOPHCVPdjkHLDlqc7M"
+uri = "file://artifacts/portfolio/public/images/projects/quantum-mutation-swarm.png"
+type = "image"
+title = "quantum mutation algorithm"
