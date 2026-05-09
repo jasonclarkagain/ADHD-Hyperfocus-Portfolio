@@ -10,8 +10,7 @@ router.post("/contact", async (req, res) => {
     return;
   }
 
-  const { name, email, subject, message } = parsed.data;
-  req.log.info({ name, email, subject }, "Contact form submission received");
+  req.log.info("Contact form submission received");
 
   res.json({
     success: true,

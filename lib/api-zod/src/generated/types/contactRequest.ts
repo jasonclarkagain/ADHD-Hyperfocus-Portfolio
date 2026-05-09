@@ -7,8 +7,12 @@
  */
 
 export interface ContactRequest {
+  /** @maxLength 100 */
   name: string;
+  /** @maxLength 254 */
   email: string;
+  /** @maxLength 200 */
   subject: string;
+  /** @maxLength 5000 */
   message: string;
 }

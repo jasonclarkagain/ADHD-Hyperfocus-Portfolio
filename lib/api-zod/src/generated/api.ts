@@ -140,11 +140,19 @@ export const GetSkillsResponse = zod.array(GetSkillsResponseItem);
 /**
  * @summary Submit contact form
  */
+export const submitContactBodyNameMax = 100;
+
+export const submitContactBodyEmailMax = 254;
+
+export const submitContactBodySubjectMax = 200;
+
+export const submitContactBodyMessageMax = 5000;
+
 export const SubmitContactBody = zod.object({
-  name: zod.string(),
-  email: zod.string(),
-  subject: zod.string(),
-  message: zod.string(),
+  name: zod.string().max(submitContactBodyNameMax),
+  email: zod.string().email().max(submitContactBodyEmailMax),
+  subject: zod.string().max(submitContactBodySubjectMax),
+  message: zod.string().max(submitContactBodyMessageMax),
 });
 
 export const SubmitContactResponse = zod.object({
