@@ -1,0 +1,70 @@
+Let's go with a **stacked approach: A + B (Web API Layer + Frontend SPA)**.
+Building the engine is one thing, but having a clean, functional interface to actually *interact* with the data transforms this from a CLI tool into a proper research platform. By stacking Axum with a modern frontend, we can implement the real-time search and the parallel viewer you've got on the roadmap.
+Since we're moving to **v0.2**, I’ll scaffold the project structure. This setup includes an Axum backend and a React/Vite frontend. I'll also ensure we use **port 0** for the API to keep things flexible and avoid local conflicts.
+### Project Scaffolding (v0.2)
+### 1. Project Directory Structure
+We’ll use a monorepo-style layout to keep the Rust backend and the frontend logic close together.
+cat << 'EOF' > setup_v0_2.sh
+mkdir -p biblica-v0.2/{backend/src,frontend/src}
+touch biblica-v0.2/backend/Cargo.toml
+touch biblica-v0.2/frontend/package.json
+EOF
+### 2. Backend API (Axum)
+This provides the REST endpoints for searching and Strong's lookups.
+cat << 'EOF' > biblica-v0.2/backend/src/main.rs
+use axum::{routing::get, Router};
+use std::net::SocketAddr;
+#[tokio::main]
+async fn main() {
+let app = Router::new()
+.route("/api/search", get(|| async { "Search results" }))
+.route("/api/strongs/:id", get(|id: axum::extract::Path<String>| async move {
+format!("Lookup for Strong's: {}", id)
+}));
+// Using port 0 for dynamic assignment
+let addr = SocketAddr::from(([127, 0, 0, 1], 0));
+let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+let local_addr = listener.local_addr().unwrap();
+println!("Backend listening on {}", local_addr);
+axum::serve(listener, app).await.unwrap();
+}
+EOF
+### 3. Frontend (React + Tailwind)
+A simple search interface to get us started.
+cat << 'EOF' > biblica-v0.2/frontend/src/App.jsx
+import React, { useState } from 'react';
+function App() {
+const [query, setQuery] = useState('');
+return (
+<div className="min-h-screen bg-slate-900 text-slate-100 p-8">
+<header className="max-w-4xl mx-auto">
+<h1 className="text-3xl font-bold mb-6 text-blue-400">Biblica v0.2</h1>
+<div className="flex gap-4 mb-8">
+<input
+className="flex-1 p-2 rounded bg-slate-800 border border-slate-700"
+placeholder="Search verses or Strong's (e.g. G3056)..."
+value={query}
+onChange={(e) => setQuery(e.target.value)}
+/>
+<button className="bg-blue-600 px-6 py-2 rounded hover:bg-blue-500 transition">
+Search
+</button>
+</div>
+<div className="grid grid-cols-2 gap-6">
+<div className="p-4 bg-slate-800 rounded border border-slate-700 h-96">
+<h2 className="text-sm uppercase text-slate-400 mb-2">Primary Text</h2>
+</div>
+<div className="p-4 bg-slate-800 rounded border border-slate-700 h-96">
+<h2 className="text-sm uppercase text-slate-400 mb-2">Parallel / Strong's</h2>
+</div>
+</div>
+</header>
+</div>
+);
+}
+export default App;
+EOF
+### Implementation Strategy
+ 1. **Axum Integration:** We'll hook the backend into your existing data parsers (from v0.1) so that the /api/search route actually queries the local SQLite/Flatbuffer store.
+ 2. **Tooltips:** On the frontend, we'll use a library like Radix UI or Framer Motion to handle the Strong's tooltips so they feel snappy when hovering over Greek/Hebrew lemmas.
+How do you want to handle the communication between the two—should we stick to standard JSON over REST, or are you interested in using something like **gRPC-web** for tighter type safety between the Rust backend and the frontend?
