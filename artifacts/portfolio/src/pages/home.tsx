@@ -416,12 +416,11 @@ export default function Home() {
   const [contactSuccess, setContactSuccess] = useState(false);
 
   const { data: projects = [], isLoading: projectsLoading } = useGetProjects(
-    { status: statusFilter === "all" ? "all" : statusFilter, ...(tagFilter ? { tag: tagFilter } : {}) },
-    { query: { enabled: true } }
+    { status: statusFilter === "all" ? "all" : statusFilter, ...(tagFilter ? { tag: tagFilter } : {}) }
   );
-  const { data: featuredProjects = [] } = useGetFeaturedProjects({ query: { enabled: true } });
-  const { data: stats } = useGetProjectStats({ query: { enabled: true } });
-  const { data: skillCategories = [] } = useGetSkills({ query: { enabled: true } });
+  const { data: featuredProjects = [] } = useGetFeaturedProjects();
+  const { data: stats } = useGetProjectStats();
+  const { data: skillCategories = [] } = useGetSkills();
   const submitContact = useSubmitContact();
 
   const selectedProjectData = selectedProject != null

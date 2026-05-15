@@ -1,10 +1,7 @@
 import { Router } from "express";
 import { db, projectsTable, skillCategoriesTable, skillsTable } from "@workspace/db";
 import { eq, sql, inArray } from "drizzle-orm";
-import {
-  GetProjectsQueryParams,
-  GetProjectParams,
-} from "@workspace/api-zod";
+import { GetProjectsQueryParams } from "@workspace/api-zod";
 
 const router = Router();
 
@@ -62,17 +59,14 @@ router.get("/projects/featured", async (req, res) => {
 });
 
 router.get("/projects/:id", async (req, res) => {
-  const parsed = GetProjectParams.safeParse({ id: Number(req.params.id) });
-  if (!parsed.success) {
-    res.status(400).json({ error: "Invalid project id" });
-    return;
-  }
+  const raw = req.params.id;
+  const numericId = Number(raw);
+  const isNumeric = !Number.isNaN(numericId) && String(numericId) === raw;
 
   try {
-    const [project] = await db
-      .select()
-      .from(projectsTable)
-      .where(eq(projectsTable.id, parsed.data.id));
+    const [project] = isNumeric
+      ? await db.select().from(projectsTable).where(eq(projectsTable.id, numericId))
+      : await db.select().from(projectsTable).where(eq(projectsTable.slug, raw));
 
     if (!project) {
       res.status(404).json({ error: "Project not found" });
