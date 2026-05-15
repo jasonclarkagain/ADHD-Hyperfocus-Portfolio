@@ -431,6 +431,9 @@ export default function Home() {
     new Set([...projects.flatMap((p) => [...p.tags, ...p.techStack])])
   ).slice(0, 18);
 
+  const liveProjects = projects.filter((p) => p.liveUrl);
+  const otherProjects = projects.filter((p) => !p.liveUrl);
+
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -778,32 +781,69 @@ export default function Home() {
         </div>
 
         {/* Project grid */}
-        <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="mt-8">
           {projectsLoading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="border border-border bg-card/50 p-6 animate-pulse">
-                <div className="h-4 bg-muted w-3/4 mb-3" />
-                <div className="h-3 bg-muted w-full mb-2" />
-                <div className="h-3 bg-muted w-4/5" />
-              </div>
-            ))
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="border border-border bg-card/50 p-6 animate-pulse">
+                  <div className="h-4 bg-muted w-3/4 mb-3" />
+                  <div className="h-3 bg-muted w-full mb-2" />
+                  <div className="h-3 bg-muted w-4/5" />
+                </div>
+              ))}
+            </div>
           ) : projects.length === 0 ? (
-            <div className="col-span-3 text-center py-16 text-muted-foreground font-mono">
+            <div className="text-center py-16 text-muted-foreground font-mono">
               <div className="text-4xl mb-4">404</div>
               <div>no projects match that filter // try a different one</div>
             </div>
           ) : (
-            projects.map((p, i) => (
-              <motion.div
-                key={p.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <ProjectCard project={p} onClick={() => setSelectedProject(p.id)} />
-              </motion.div>
-            ))
+            <div className="space-y-10">
+              {liveProjects.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="text-xs font-mono text-primary uppercase tracking-widest">// live demos</span>
+                    <div className="flex-1 h-px bg-primary/20" />
+                    <span className="text-xs font-mono text-muted-foreground">{liveProjects.length} projects</span>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {liveProjects.map((p, i) => (
+                      <motion.div
+                        key={p.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                      >
+                        <ProjectCard project={p} onClick={() => setSelectedProject(p.id)} />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {otherProjects.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">// no live view</span>
+                    <div className="flex-1 h-px bg-border/40" />
+                    <span className="text-xs font-mono text-muted-foreground">{otherProjects.length} projects</span>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {otherProjects.map((p, i) => (
+                      <motion.div
+                        key={p.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                      >
+                        <ProjectCard project={p} onClick={() => setSelectedProject(p.id)} />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </Section>
