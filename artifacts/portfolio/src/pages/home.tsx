@@ -542,7 +542,7 @@ export default function Home() {
           className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl font-mono leading-relaxed"
         >
           Building things, breaking things, rebuilding them better — occasionally shipping something
-          that works on the first try. Currently: 61 repos across AI agents, security tools, and
+          that works on the first try. Currently: 72+ repos across AI agents, security tools, and
           systems that definitely don't have bugs. Simultaneously.
         </motion.p>
 
