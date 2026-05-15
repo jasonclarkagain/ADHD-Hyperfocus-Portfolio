@@ -166,10 +166,16 @@ function ProjectCard({
           )}
           {!featured && <div />}
           {project.liveUrl && (
-            <div className="flex items-center gap-1 text-xs font-mono bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 px-2 py-0.5">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center gap-1 text-xs font-mono bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 px-2 py-0.5 hover:bg-emerald-950 hover:border-emerald-400/60 transition-colors"
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              LIVE
-            </div>
+              LIVE ↗
+            </a>
           )}
         </div>
         {/* Image gradient overlay at bottom */}
@@ -217,9 +223,15 @@ function ProjectCard({
           click to expand →
         </span>
         {project.liveUrl && (
-          <span className="text-xs font-mono text-emerald-400/60 group-hover:text-emerald-400 transition-colors">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-xs font-mono text-emerald-400/60 group-hover:text-emerald-400 transition-colors hover:underline"
+          >
             live demo ↗
-          </span>
+          </a>
         )}
       </div>
       </div>
