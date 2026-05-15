@@ -282,3 +282,63 @@ id = "v2HNOPHCVPdjkHLDlqc7M"
 uri = "file://artifacts/portfolio/public/images/projects/quantum-mutation-swarm.png"
 type = "image"
 title = "quantum mutation algorithm"
+
+[[generated]]
+id = "PGCYnqTAnqrC_OsZa0-Ks"
+uri = "file://attached_assets/generated_images/a_sleek_dark_mode_4796.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "qPjoolaK17AL8bs_6Cozd"
+uri = "file://attached_assets/generated_images/a_terminal_window_on_e29e.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "B6M2tJniPggDMLDvdROWB"
+uri = "file://attached_assets/generated_images/a_dark_systems_dashboard_1531.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "2ivrPDj6C2gfJXzzqVCTv"
+uri = "file://attached_assets/generated_images/a_dark_tactical_ai_b57a.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "y380lGxSTt2rXss2DQzPZ"
+uri = "file://attached_assets/generated_images/test_dark_terminal_interface_5a50.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "LywFI7nalChkuC02o-UI6"
+uri = "file://attached_assets/generated_images/a_sleek_dark_mode_c9a2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "KtvTgm0fiQKXMpFImEtA3"
+uri = "file://attached_assets/generated_images/a_terminal_window_on_6b84.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "x3HZLoVJfromkH_KD67Vi"
+uri = "file://attached_assets/generated_images/a_modern_design_system_f8cd.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "E0059dHKqQ_ctwpyJbqkY"
+uri = "file://attached_assets/generated_images/a_dark_systems_dashboard_7933.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "_z2kwijI5FizNlf2xvs-B"
+uri = "file://attached_assets/generated_images/a_dark_tactical_ai_1b1c.png"
+type = "image"
+title = "generated_image"
